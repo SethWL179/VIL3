@@ -96,6 +96,7 @@ function buildBoard(headers) {
 }
 
 function showModal(content) {
+  showingAnswer = false;
   const modal = document.getElementById('modal');
   const modalContent = document.getElementById('modalContent');
   modal.classList.remove('hidden');
