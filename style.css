@@ -1,133 +1,243 @@
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
   background: #000066;
   color: #fff;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-#title {
+h1#title {
   text-align: center;
-  font-size: 48px;
-  font-weight: bold;
-  margin: 20px;
+  font-size: 2.5em;
+  letter-spacing: 0.1em;
+  margin: 24px 0 8px 0;
 }
 
 #main {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 28px;
+  padding: 0 0 32px 0;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: auto;
 }
 
 #teams {
-  width: 200px;
-  padding: 10px;
-  background: #003399;
+  min-width: 320px;
+  background: #001144;
+  border-radius: 8px;
+  padding: 24px 18px 18px 18px;
+  margin-top: 12px;
+  box-shadow: 0 3px 18px #00003366;
 }
 
 #teams h2 {
-  font-size: 24px;
+  font-size: 2em;
+  margin-bottom: 16px;
+  text-align: center;
 }
 
-#teams button {
-  margin-bottom: 10px;
+#addTeam {
+  display: block;
+  margin: 0 auto 18px auto;
+  font-size: 1.1em;
+  padding: 6px 16px;
+  background: #0055dd;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#teamList {
+  margin-bottom: 20px;
 }
 
 .team {
-  background: #0044cc;
-  padding: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
 }
 
 .team input {
-  width: 100px;
+  font-size: 1.7em;
+  font-weight: bold;
+  width: 140px;
+  padding: 4px 8px;
+  background: #fff;
+  color: #000066;
+  border: 2px solid #0055dd;
+  border-radius: 6px;
 }
 
 .team span {
-  margin: 0 5px;
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0 12px;
+  color: #ffd700;
+  min-width: 60px;
+  text-align: right;
+}
+
+.team button {
+  font-size: 1.3em;
+  padding: 3px 12px;
+  background: #0055dd;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.team button:hover {
+  background: #003399;
+}
+
+.uploadBar {
+  font-size: 0.97em;
+  padding: 8px 12px;
+  background: #001144;
+  border-radius: 6px;
+  margin-top: 18px;
+  width: 93%;
+  color: #fff;
+  border: 1px solid #002266;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.uploadBar label,
+.uploadBar input,
+.uploadBar p {
+  font-size: 0.97em;
+}
+
+.uploadBar input[type="file"] {
+  margin: 6px 0 0 0;
+  padding: 2px;
+  font-size: 1em;
+}
+
+.uploadBar p {
+  margin: 4px 0 0 0;
+  color: #ccc;
+  font-size: 0.95em;
 }
 
 #board {
   flex: 1;
-  padding: 20px;
+  margin-top: 12px;
 }
 
-#uploadSection {
-  margin-bottom: 20px;
-  text-align: center;
-  background: #002288;
-  padding: 20px;
-  border: 2px solid #fff;
-}
-
-#uploadSection label {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-#uploadSection input {
-  font-size: 18px;
-}
-
-#uploadSection p {
-  font-size: 16px;
-}
-
-table {
-  border-collapse: collapse;
+#jeopardyBoard {
   width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background: #002288;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 18px #00003366;
 }
 
-th, td {
-  border: 2px solid #fff;
+#jeopardyBoard th, #jeopardyBoard td {
+  border: 2px solid #0055dd;
   text-align: center;
-  font-size: 24px;
+  padding: 20px 12px;
+  font-size: 1.3em;
   font-weight: bold;
-  padding: 20px;
+  min-width: 120px;
+  color: #fff;
+}
+
+#jeopardyBoard th {
+  background: #0033aa;
+  font-size: 1.5em;
+  text-shadow: 1px 1px 3px #000033;
+}
+
+#jeopardyBoard td {
+  background: #002288;
   cursor: pointer;
+  transition: background 0.18s, color 0.18s;
 }
 
-th {
-  background: #0033cc;
+#jeopardyBoard td:hover {
+  background: #0055dd;
+  color: #fff700;
 }
 
-td {
-  background: #0066cc;
-}
-
-td.used {
-  background: grey;
+#jeopardyBoard td.used {
+  background: #444488;
+  color: #888;
   cursor: default;
+  text-decoration: line-through;
 }
-#modal.hidden { display: none; }
+
+#modal.hidden {
+  display: none;
+}
+
 #modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000066;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.55);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 48px;
+  z-index: 40;
+}
+
+#modalContent {
+  background: #001144;
+  padding: 36px 42px;
+  border-radius: 10px;
+  font-size: 1.5em;
   text-align: center;
-  padding: 50px;
+  box-shadow: 0 6px 32px #00004499;
+  max-width: 500px;
+  min-width: 320px;
 }
 
-.hidden {
-  display: none;
-}
-
-#modalContent .teamSelect {
+.teamSelect {
+  margin-top: 18px;
   display: flex;
   flex-wrap: wrap;
+  gap: 12px;
   justify-content: center;
 }
 
-#modalContent .teamSelect button {
-  margin: 10px;
-  padding: 20px;
-  font-size: 24px;
+.teamSelect button {
+  font-size: 1.2em;
+  padding: 10px 24px;
+  background: #ffd700;
+  color: #222;
+  border: none;
+  border-radius: 6px;
+  margin: 4px 0;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.14s;
+}
+
+.teamSelect button:hover {
+  background: #fff700;
+}
+
+@media (max-width: 900px) {
+  #main {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  #teams {
+    margin-bottom: 20px;
+    min-width: unset;
+  }
 }
