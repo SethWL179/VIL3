@@ -158,3 +158,4 @@ questions = [
     {question:'Test?', answer:'Answer', used:false, value:300} ]
 ];
 buildBoard(defaultHeaders);
+renderTeams();
