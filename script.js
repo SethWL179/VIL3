@@ -134,3 +134,27 @@ function updateBoard() {
     }
   }
 }
+
+// ✅ DEFAULT DATA: run on load so it never shows blank
+const defaultHeaders = ['History', 'Science', 'Sports', 'Movies', 'Geography', 'Wild'];
+questions = [
+  [ {question:'Who was first president?', answer:'George Washington', used:false, value:100},
+    {question:'Who wrote Declaration?', answer:'Thomas Jefferson', used:false, value:200},
+    {question:'Test?', answer:'Answer', used:false, value:300} ],
+  [ {question:'What is H2O?', answer:'Water', used:false, value:100},
+    {question:'Closest planet?', answer:'Mercury', used:false, value:200},
+    {question:'Test?', answer:'Answer', used:false, value:300} ],
+  [ {question:'Puck sport?', answer:'Hockey', used:false, value:100},
+    {question:'Home run worth?', answer:'1 run', used:false, value:200},
+    {question:'Test?', answer:'Answer', used:false, value:300} ],
+  [ {question:'Directed Jaws?', answer:'Spielberg', used:false, value:100},
+    {question:'Played Indy?', answer:'Harrison Ford', used:false, value:200},
+    {question:'Test?', answer:'Answer', used:false, value:300} ],
+  [ {question:'Largest ocean?', answer:'Pacific', used:false, value:100},
+    {question:'Capital of France?', answer:'Paris', used:false, value:200},
+    {question:'Test?', answer:'Answer', used:false, value:300} ],
+  [ {question:'Wild Q1?', answer:'Wild A1', used:false, value:100},
+    {question:'Wild Q2?', answer:'Wild A2', used:false, value:200},
+    {question:'Test?', answer:'Answer', used:false, value:300} ]
+];
+buildBoard(defaultHeaders);
