@@ -17,32 +17,33 @@ h1#title {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 28px;
+  gap: 42px;
   padding: 0 0 32px 0;
-  max-width: 1200px;
+  max-width: 1800px;
   margin: auto;
 }
 
 #teams {
-  min-width: 320px;
+  min-width: 180px;
+  max-width: 200px;
   background: #001144;
   border-radius: 8px;
-  padding: 24px 18px 18px 18px;
+  padding: 18px 10px 12px 10px;
   margin-top: 12px;
   box-shadow: 0 3px 18px #00003366;
 }
 
 #teams h2 {
-  font-size: 2em;
-  margin-bottom: 16px;
+  font-size: 1.2em;
+  margin-bottom: 12px;
   text-align: center;
 }
 
 #addTeam {
   display: block;
-  margin: 0 auto 18px auto;
-  font-size: 1.1em;
-  padding: 6px 16px;
+  margin: 0 auto 14px auto;
+  font-size: 1em;
+  padding: 5px 10px;
   background: #0055dd;
   color: #fff;
   border: none;
@@ -51,46 +52,52 @@ h1#title {
 }
 
 #teamList {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .team {
-  margin-bottom: 18px;
+  margin-bottom: 10px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
-  padding: 8px 0;
+  gap: 4px;
+  padding: 6px 0;
+  width: 100%;
 }
 
 .team input {
-  font-size: 1.7em;
+  font-size: 1.3em;
   font-weight: bold;
-  width: 140px;
-  padding: 4px 8px;
+  width: 100%;
+  max-width: 160px;
+  padding: 4px 6px;
   background: #fff;
   color: #000066;
   border: 2px solid #0055dd;
   border-radius: 6px;
+  text-align: center;
 }
 
 .team span {
   font-size: 2em;
   font-weight: bold;
-  margin: 0 12px;
   color: #ffd700;
+  margin-top: 2px;
+  margin-bottom: 6px;
   min-width: 60px;
-  text-align: right;
+  text-align: center;
 }
 
 .team button {
-  font-size: 1.3em;
-  padding: 3px 12px;
+  font-size: 1.1em;
+  padding: 2px 10px;
   background: #0055dd;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background 0.15s;
+  margin: 0 6px;
 }
 
 .team button:hover {
@@ -98,12 +105,12 @@ h1#title {
 }
 
 .uploadBar {
-  font-size: 0.97em;
-  padding: 8px 12px;
+  font-size: 0.93em;
+  padding: 5px 9px;
   background: #001144;
   border-radius: 6px;
-  margin-top: 18px;
-  width: 93%;
+  margin-top: 14px;
+  width: 95%;
   color: #fff;
   border: 1px solid #002266;
   display: flex;
@@ -114,7 +121,7 @@ h1#title {
 .uploadBar label,
 .uploadBar input,
 .uploadBar p {
-  font-size: 0.97em;
+  font-size: 0.93em;
 }
 
 .uploadBar input[type="file"] {
@@ -126,12 +133,13 @@ h1#title {
 .uploadBar p {
   margin: 4px 0 0 0;
   color: #ccc;
-  font-size: 0.95em;
+  font-size: 0.91em;
 }
 
 #board {
   flex: 1;
   margin-top: 12px;
+  width: 100%;
 }
 
 #jeopardyBoard {
@@ -139,25 +147,26 @@ h1#title {
   border-collapse: collapse;
   margin-top: 10px;
   background: #002288;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 3px 18px #00003366;
+  font-size: 2em;
 }
 
 #jeopardyBoard th, #jeopardyBoard td {
-  border: 2px solid #0055dd;
+  border: 3px solid #0055dd;
   text-align: center;
-  padding: 20px 12px;
+  padding: 36px 22px;
   font-size: 1.3em;
   font-weight: bold;
-  min-width: 120px;
+  min-width: 130px;
   color: #fff;
 }
 
 #jeopardyBoard th {
   background: #0033aa;
-  font-size: 1.5em;
-  text-shadow: 1px 1px 3px #000033;
+  font-size: 1.4em;
+  text-shadow: 1px 1px 5px #000033;
 }
 
 #jeopardyBoard td {
@@ -185,41 +194,41 @@ h1#title {
 #modal {
   position: fixed;
   top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.55);
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.70);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 40;
+  z-index: 999;
 }
 
 #modalContent {
   background: #001144;
-  padding: 36px 42px;
-  border-radius: 10px;
-  font-size: 1.5em;
+  padding: 70px 80px;
+  border-radius: 16px;
+  font-size: 2.4em;
   text-align: center;
-  box-shadow: 0 6px 32px #00004499;
-  max-width: 500px;
-  min-width: 320px;
+  box-shadow: 0 12px 48px #00004499;
+  max-width: 900px;
+  min-width: 400px;
 }
 
 .teamSelect {
-  margin-top: 18px;
+  margin-top: 28px;
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 24px;
   justify-content: center;
 }
 
 .teamSelect button {
-  font-size: 1.2em;
-  padding: 10px 24px;
+  font-size: 1.4em;
+  padding: 18px 38px;
   background: #ffd700;
   color: #222;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   margin: 4px 0;
   cursor: pointer;
   font-weight: bold;
@@ -239,5 +248,12 @@ h1#title {
   #teams {
     margin-bottom: 20px;
     min-width: unset;
+    max-width: unset;
+  }
+  #modalContent {
+    padding: 36px 10vw;
+    font-size: 1.2em;
+    min-width: unset;
+    max-width: 98vw;
   }
 }
