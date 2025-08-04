@@ -6,22 +6,27 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="container">
-    <h1 id="title">VIL Trivia</h1>
-    <div id="main">
-      <div id="teams">
-        <h2>Teams</h2>
-        <button id="addTeam">Add Team</button>
-        <div id="teamList"></div>
+  <h1 id="title">VIL Trivia</h1>
+
+  <div id="main">
+    <div id="teams">
+      <h2>Teams</h2>
+      <button id="addTeam">Add Team</button>
+      <div id="teamList"></div>
+    </div>
+
+    <div id="board">
+      <div id="uploadSection">
+        <label for="csvInput">📂 Upload Trivia CSV:</label><br/>
+        <input type="file" id="csvInput" accept=".csv" /><br/>
+        <p>Please upload a properly formatted CSV to load the board.</p>
       </div>
-      <div id="board">
-        <input type="file" id="csvInput" accept=".csv" />
-        <table id="jeopardyBoard"></table>
-      </div>
+
+      <table id="jeopardyBoard"></table>
     </div>
   </div>
 
-  <!-- Modal for questions/answers -->
+  <!-- The modal for questions/answers -->
   <div id="modal" class="hidden">
     <div id="modalContent"></div>
   </div>
