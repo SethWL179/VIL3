@@ -2,21 +2,15 @@
 <html>
 <head>
   <title>Test Render</title>
-  <style>
-    body { background: #000066; color: #fff; }
-    #main { display: flex; }
-    #modal.hidden { display: none; }
-    #modal { position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); color:#fff; display:flex; align-items:center; justify-content:center; }
-  </style>
+  <!-- External CSS file -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div id="main">
     <div id="uploadSection">Upload Here</div>
   </div>
   <div id="modal" class="hidden">Modal Content</div>
-  <script>
-    document.getElementById('modal').classList.add('hidden');
-    console.log("Test JS loaded!");
-  </script>
+  <!-- External JS file -->
+  <script src="script.js"></script>
 </body>
 </html>
