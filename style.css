@@ -99,7 +99,7 @@ td.used {
   background: grey;
   cursor: default;
 }
-
+#modal.hidden { display: none; }
 #modal {
   position: fixed;
   top: 0;
