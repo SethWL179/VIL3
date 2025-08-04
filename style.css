@@ -4,46 +4,48 @@ body {
   font-family: 'Segoe UI', Arial, sans-serif;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 h1#title {
   text-align: center;
-  font-size: 2.5em;
+  font-size: 2em;
   letter-spacing: 0.1em;
-  margin: 24px 0 8px 0;
+  margin: 18px 0 8px 0;
 }
 
 #main {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 42px;
-  padding: 0 0 32px 0;
-  max-width: 1800px;
+  gap: 28px;
+  padding: 0 0 24px 0;
+  max-width: 1200px;
   margin: auto;
 }
 
 #teams {
-  min-width: 180px;
-  max-width: 200px;
+  min-width: 150px;
+  max-width: 180px;
   background: #001144;
   border-radius: 8px;
-  padding: 18px 10px 12px 10px;
-  margin-top: 12px;
-  box-shadow: 0 3px 18px #00003366;
+  padding: 14px 8px 8px 8px;
+  margin-top: 6px;
+  box-shadow: 0 2px 12px #00003366;
+  flex-shrink: 0;
 }
 
 #teams h2 {
-  font-size: 1.2em;
-  margin-bottom: 12px;
+  font-size: 1em;
+  margin-bottom: 8px;
   text-align: center;
 }
 
 #addTeam {
   display: block;
-  margin: 0 auto 14px auto;
-  font-size: 1em;
-  padding: 5px 10px;
+  margin: 0 auto 10px auto;
+  font-size: 0.95em;
+  padding: 4px 8px;
   background: #0055dd;
   color: #fff;
   border: none;
@@ -52,25 +54,25 @@ h1#title {
 }
 
 #teamList {
-  margin-bottom: 18px;
+  margin-bottom: 12px;
 }
 
 .team {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  padding: 6px 0;
+  gap: 2px;
+  padding: 4px 0;
   width: 100%;
 }
 
 .team input {
-  font-size: 1.3em;
+  font-size: 1.1em;
   font-weight: bold;
   width: 100%;
-  max-width: 160px;
-  padding: 4px 6px;
+  max-width: 120px;
+  padding: 3px 5px;
   background: #fff;
   color: #000066;
   border: 2px solid #0055dd;
@@ -79,25 +81,25 @@ h1#title {
 }
 
 .team span {
-  font-size: 2em;
+  font-size: 1.4em;
   font-weight: bold;
   color: #ffd700;
   margin-top: 2px;
-  margin-bottom: 6px;
-  min-width: 60px;
+  margin-bottom: 4px;
+  min-width: 40px;
   text-align: center;
 }
 
 .team button {
-  font-size: 1.1em;
-  padding: 2px 10px;
+  font-size: 1em;
+  padding: 2px 8px;
   background: #0055dd;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background 0.15s;
-  margin: 0 6px;
+  margin: 0 4px;
 }
 
 .team button:hover {
@@ -105,12 +107,12 @@ h1#title {
 }
 
 .uploadBar {
-  font-size: 0.93em;
-  padding: 5px 9px;
+  font-size: 0.9em;
+  padding: 4px 7px;
   background: #001144;
   border-radius: 6px;
-  margin-top: 14px;
-  width: 95%;
+  margin-top: 10px;
+  width: 97%;
   color: #fff;
   border: 1px solid #002266;
   display: flex;
@@ -121,52 +123,56 @@ h1#title {
 .uploadBar label,
 .uploadBar input,
 .uploadBar p {
-  font-size: 0.93em;
+  font-size: 0.9em;
 }
 
 .uploadBar input[type="file"] {
-  margin: 6px 0 0 0;
+  margin: 4px 0 0 0;
   padding: 2px;
   font-size: 1em;
 }
 
 .uploadBar p {
-  margin: 4px 0 0 0;
+  margin: 3px 0 0 0;
   color: #ccc;
-  font-size: 0.91em;
+  font-size: 0.87em;
 }
 
 #board {
   flex: 1;
-  margin-top: 12px;
+  margin-top: 6px;
   width: 100%;
+  min-width: 0;
+  overflow-x: auto;
 }
 
 #jeopardyBoard {
   width: 100%;
+  max-width: 940px;
   border-collapse: collapse;
-  margin-top: 10px;
+  margin-top: 6px;
   background: #002288;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 3px 18px #00003366;
-  font-size: 2em;
+  border-radius: 8px;
+  overflow: auto;
+  box-shadow: 0 2px 12px #00003366;
+  font-size: 1.1em;
 }
 
 #jeopardyBoard th, #jeopardyBoard td {
-  border: 3px solid #0055dd;
+  border: 2px solid #0055dd;
   text-align: center;
-  padding: 36px 22px;
-  font-size: 1.3em;
+  padding: 14px 8px;
+  font-size: 1em;
   font-weight: bold;
-  min-width: 130px;
+  min-width: 80px;
   color: #fff;
+  word-break: break-word;
 }
 
 #jeopardyBoard th {
   background: #0033aa;
-  font-size: 1.4em;
-  text-shadow: 1px 1px 5px #000033;
+  font-size: 1.1em;
+  text-shadow: 1px 1px 2px #000033;
 }
 
 #jeopardyBoard td {
@@ -205,26 +211,26 @@ h1#title {
 
 #modalContent {
   background: #001144;
-  padding: 70px 80px;
+  padding: 48px 62px;
   border-radius: 16px;
-  font-size: 2.4em;
+  font-size: 2em;
   text-align: center;
   box-shadow: 0 12px 48px #00004499;
-  max-width: 900px;
-  min-width: 400px;
+  max-width: 650px;
+  min-width: 260px;
 }
 
 .teamSelect {
-  margin-top: 28px;
+  margin-top: 24px;
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 16px;
   justify-content: center;
 }
 
 .teamSelect button {
-  font-size: 1.4em;
-  padding: 18px 38px;
+  font-size: 1.2em;
+  padding: 14px 32px;
   background: #ffd700;
   color: #222;
   border: none;
@@ -239,20 +245,20 @@ h1#title {
   background: #fff700;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   #main {
     flex-direction: column;
     align-items: stretch;
     gap: 16px;
+    max-width: 96vw;
   }
-  #teams {
-    margin-bottom: 20px;
-    min-width: unset;
-    max-width: unset;
+  #board, #jeopardyBoard {
+    max-width: 100vw;
+    font-size: 1em;
   }
   #modalContent {
-    padding: 36px 10vw;
-    font-size: 1.2em;
+    padding: 28px 4vw;
+    font-size: 1.1em;
     min-width: unset;
     max-width: 98vw;
   }
