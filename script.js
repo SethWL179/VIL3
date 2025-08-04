@@ -8,7 +8,7 @@ document.getElementById('addTeam').addEventListener('click', () => {
   teams.push(team);
   renderTeams();
 });
-
+document.getElementById('modal').classList.add('hidden');
 function renderTeams() {
   const teamList = document.getElementById('teamList');
   teamList.innerHTML = '';
