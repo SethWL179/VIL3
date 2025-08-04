@@ -1,17 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Test Render</title>
+  <meta charset="UTF-8" />
+  <title>VIL Trivia</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <h1 id="title">VIL Trivia</h1>
   <div id="main">
-    <div id="uploadSection">
-      <label for="csvInput">Upload a CSV file:</label>
-      <input type="file" id="csvInput" accept=".csv" />
+    <div id="teams">
+      <h2>Teams</h2>
+      <button id="addTeam">Add Team</button>
+      <div id="teamList"></div>
+    </div>
+    <div id="board">
+      <div id="uploadSection">
+        <label for="csvInput">📂 Upload Trivia CSV:</label><br/>
+        <input type="file" id="csvInput" accept=".csv" /><br/>
+        <p>Please upload a properly formatted CSV to load the board.</p>
+      </div>
+      <table id="jeopardyBoard"></table>
     </div>
   </div>
-  <div id="modal" class="hidden">Modal Content</div>
+  <div id="modal" class="hidden">
+    <div id="modalContent"></div>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
