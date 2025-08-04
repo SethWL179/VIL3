@@ -2,15 +2,16 @@
 <html>
 <head>
   <title>Test Render</title>
-  <!-- External CSS file -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div id="main">
-    <div id="uploadSection">Upload Here</div>
+    <div id="uploadSection">
+      <label for="csvInput">Upload a CSV file:</label>
+      <input type="file" id="csvInput" accept=".csv" />
+    </div>
   </div>
   <div id="modal" class="hidden">Modal Content</div>
-  <!-- External JS file -->
   <script src="script.js"></script>
 </body>
 </html>
