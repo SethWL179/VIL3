@@ -10,9 +10,11 @@ body {
 
 h1#title {
   text-align: center;
-  font-size: 3vw;
+  font-size: 4vw; /* Larger, but still responsive */
   letter-spacing: 0.1em;
   margin: 2vw 0 0.5vw 0;
+  line-height: 1.1;
+  font-weight: 900;
 }
 
 #main {
@@ -86,26 +88,38 @@ h1#title {
   text-align: center;
 }
 
+.team .team-points-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3vw;
+}
+
 .team span {
   font-size: 2.5vw;
   font-weight: bold;
   color: #ffd700;
-  margin-top: 0.2vw;
-  margin-bottom: 0.6vw;
   min-width: 4vw;
   text-align: center;
+  margin: 0 0.3vw 0 0;
 }
 
 .team button {
-  font-size: 1.5vw;
-  padding: 0.3vw 1vw;
+  font-size: 1.2vw;
+  padding: 0.1vw 0.7vw;
   background: #0055dd;
   color: #fff;
   border: none;
-  border-radius: 0.5vw;
+  border-radius: 0.4vw;
   cursor: pointer;
   transition: background 0.15s;
-  margin: 0 0.6vw;
+  margin-left: 0.2vw;
+  margin-right: 0.2vw;
+  vertical-align: middle;
+  min-width: 2vw;
+  min-height: 2vw;
+  line-height: 1;
+  /* smaller and tighter */
 }
 
 .team button:hover {
