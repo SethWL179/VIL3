@@ -1,14 +1,17 @@
-let teams = [];
+// VIL Trivia Game Script
+// Assumes elements: #addTeam, #teamList, #csvInput, #jeopardyBoard, #modal, #modalContent
+
+let teams = [
+  { name: "Team 1", points: 0 },
+  { name: "Team 2", points: 0 }
+];
+
 let questions = [];
+let headers = [];
 let currentQuestion = null;
 let showingAnswer = false;
 
-document.getElementById('addTeam').addEventListener('click', () => {
-  const team = { name: 'Team', points: 0 };
-  teams.push(team);
-  renderTeams();
-});
-document.getElementById('modal').classList.add('hidden');
+// TEAM RENDERING
 function renderTeams() {
   const teamList = document.getElementById('teamList');
   teamList.innerHTML = '';
@@ -22,6 +25,10 @@ function renderTeams() {
       team.name = e.target.value;
     });
 
+    // Points row (number and buttons inline)
+    const pointsRow = document.createElement('div');
+    pointsRow.className = 'team-points-row';
+
     const points = document.createElement('span');
     points.textContent = team.points;
 
@@ -33,70 +40,104 @@ function renderTeams() {
     sub.textContent = '-';
     sub.onclick = () => { team.points -= 100; renderTeams(); };
 
+    pointsRow.appendChild(points);
+    pointsRow.appendChild(add);
+    pointsRow.appendChild(sub);
+
     div.appendChild(input);
-    div.appendChild(points);
-    div.appendChild(add);
-    div.appendChild(sub);
+    div.appendChild(pointsRow);
 
     teamList.appendChild(div);
   });
 }
 
-document.getElementById('csvInput').addEventListener('change', (e) => {
-  const file = e.target.files[0];
-  const reader = new FileReader();
-  reader.onload = function(event) {
-    parseCSV(event.target.result);
-  };
-  reader.readAsText(file);
-});
+document.getElementById('addTeam').onclick = () => {
+  teams.push({ name: `Team ${teams.length + 1}`, points: 0 });
+  renderTeams();
+};
 
-function parseCSV(data) {
-  const rows = data.trim().split('\n').map(row => row.split(','));
-  questions = [];
-  const headers = rows[0];
+renderTeams();
+
+// CSV PARSING AND BOARD BUILDING
+function parseCSV(text) {
+  // Simple CSV parser
+  const rows = text.trim().split(/\r?\n/).map(r => r.split(','));
+  headers = rows[0].map(h => h.trim());
+  const qArr = [];
+  for (let i = 0; i < headers.length; i++) qArr[i] = [];
   for (let i = 1; i < rows.length; i += 2) {
-    const qs = rows[i];
-    const as = rows[i + 1];
-    qs.forEach((q, index) => {
-      if (!questions[index]) questions[index] = [];
-      questions[index].push({ question: q, answer: as[index], used: false, value: ((i + 1) / 2) * 100 });
-    });
+    const qRow = rows[i];
+    const aRow = rows[i + 1];
+    if (!aRow) continue; // skip incomplete
+    for (let j = 0; j < headers.length; j++) {
+      qArr[j].push({
+        category: headers[j],
+        question: qRow[j] ? qRow[j].trim() : '',
+        answer: aRow[j] ? aRow[j].trim() : '',
+        value: ((i - 1) / 2 + 1) * 100,
+        used: false
+      });
+    }
   }
-  buildBoard(headers);
+  questions = qArr;
 }
 
-function buildBoard(headers) {
+function buildBoard() {
   const table = document.getElementById('jeopardyBoard');
   table.innerHTML = '';
-
-  const headerRow = document.createElement('tr');
-  headers.forEach(header => {
+  // Header Row
+  const tr = document.createElement('tr');
+  headers.forEach(h => {
     const th = document.createElement('th');
-    th.textContent = header;
-    headerRow.appendChild(th);
+    th.textContent = h;
+    tr.appendChild(th);
   });
-  table.appendChild(headerRow);
+  table.appendChild(tr);
 
-  for (let i = 0; i < questions[0].length; i++) {
+  // Find max number of questions per category
+  const maxRows = Math.max(...questions.map(qs => qs.length));
+
+  // Build question rows
+  for (let i = 0; i < maxRows; i++) {
     const row = document.createElement('tr');
     for (let j = 0; j < headers.length; j++) {
       const cell = document.createElement('td');
-      cell.textContent = questions[j][i].value;
-      cell.addEventListener('click', () => {
-        if (!questions[j][i].used) {
-          currentQuestion = questions[j][i];
-          showModal(currentQuestion.question);
-        }
-      });
+      const qObj = questions[j][i];
+      if (qObj && qObj.question) {
+        cell.textContent = qObj.used ? "" : qObj.value;
+        if (qObj.used) cell.classList.add('used');
+        cell.addEventListener('click', () => {
+          if (!qObj.used) {
+            currentQuestion = qObj;
+            showingAnswer = false;
+            showModal(currentQuestion.question);
+          }
+        });
+      } else {
+        cell.textContent = '';
+        cell.classList.add('disabled');
+      }
       row.appendChild(cell);
     }
     table.appendChild(row);
   }
 }
 
+// CSV UPLOAD HANDLER
+document.getElementById('csvInput').addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(event) {
+    parseCSV(event.target.result);
+    buildBoard();
+  };
+  reader.readAsText(file);
+});
+
+// MODAL FUNCTIONALITY
 function showModal(content) {
-  showingAnswer = false;
+  showingAnswer = false; // Reset state on new question
   const modal = document.getElementById('modal');
   const modalContent = document.getElementById('modalContent');
   modal.classList.remove('hidden');
@@ -105,17 +146,20 @@ function showModal(content) {
   modal.onclick = () => {
     if (!showingAnswer) {
       showingAnswer = true;
-      modalContent.innerHTML = `<div>${currentQuestion.answer}</div><div class="teamSelect">${teams.map((t, i) => `<button onclick="selectTeam(${i})">${t.name}</button>`).join('')}</div>`;
+      if (currentQuestion && currentQuestion.answer) {
+        modalContent.innerHTML = `
+          <div>${currentQuestion.answer}</div>
+          <div class="teamSelect">
+            ${teams.map((t, i) => `<button onclick="selectTeam(${i})">${t.name}</button>`).join('')}
+          </div>
+        `;
+      } else {
+        modalContent.innerHTML = `<div>No answer available.</div>`;
+      }
+    } else {
+      closeModal();
     }
   };
-}
-
-function selectTeam(index) {
-  teams[index].points += currentQuestion.value;
-  currentQuestion.used = true;
-  renderTeams();
-  updateBoard();
-  closeModal();
 }
 
 function closeModal() {
@@ -123,40 +167,17 @@ function closeModal() {
   showingAnswer = false;
 }
 
-function updateBoard() {
-  const cells = document.querySelectorAll('#jeopardyBoard td');
-  let k = 0;
-  for (let i = 0; i < questions[0].length; i++) {
-    for (let j = 0; j < questions.length; j++) {
-      if (questions[j][i].used) {
-        cells[k].classList.add('used');
-      }
-      k++;
-    }
-  }
-}
+// TEAM SELECT TO ADD POINTS
+window.selectTeam = function(idx) {
+  if (typeof idx !== 'number' || !teams[idx]) return;
+  teams[idx].points += currentQuestion.value;
+  renderTeams();
+  currentQuestion.used = true;
+  buildBoard();
+  closeModal();
+};
 
-// ✅ DEFAULT DATA: run on load so it never shows blank
-const defaultHeaders = ['History', 'Science', 'Sports', 'Movies', 'Geography', 'Wild'];
-questions = [
-  [ {question:'Who was first president?', answer:'George Washington', used:false, value:100},
-    {question:'Who wrote Declaration?', answer:'Thomas Jefferson', used:false, value:200},
-    {question:'Test?', answer:'Answer', used:false, value:300} ],
-  [ {question:'What is H2O?', answer:'Water', used:false, value:100},
-    {question:'Closest planet?', answer:'Mercury', used:false, value:200},
-    {question:'Test?', answer:'Answer', used:false, value:300} ],
-  [ {question:'Puck sport?', answer:'Hockey', used:false, value:100},
-    {question:'Home run worth?', answer:'1 run', used:false, value:200},
-    {question:'Test?', answer:'Answer', used:false, value:300} ],
-  [ {question:'Directed Jaws?', answer:'Spielberg', used:false, value:100},
-    {question:'Played Indy?', answer:'Harrison Ford', used:false, value:200},
-    {question:'Test?', answer:'Answer', used:false, value:300} ],
-  [ {question:'Largest ocean?', answer:'Pacific', used:false, value:100},
-    {question:'Capital of France?', answer:'Paris', used:false, value:200},
-    {question:'Test?', answer:'Answer', used:false, value:300} ],
-  [ {question:'Wild Q1?', answer:'Wild A1', used:false, value:100},
-    {question:'Wild Q2?', answer:'Wild A2', used:false, value:200},
-    {question:'Test?', answer:'Answer', used:false, value:300} ]
-];
-buildBoard(defaultHeaders);
-renderTeams();
+// ESCAPE MODAL WITH ESC KEY
+document.addEventListener('keydown', function(e) {
+  if (e.key === "Escape") closeModal();
+});
